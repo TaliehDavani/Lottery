@@ -1,0 +1,151 @@
+<!DOCTYPE html5>
+<html>
+  <head>
+    <meta  charset=UTF-8" >
+    <title>Projet JavaScript</title>
+    <script type="text/javascript">
+	/*cette fonction pour verifier si les champe et bien remplis
+	//  pour verifier si le joueur et mineur ou majeur
+	*/
+	 function Jouer(){
+	    var dateJour = new Date();
+		var dateNaissance = new Date(document.form1.anniversaire.value);
+		var Jour = dateJour.getDate();
+		var Mois = dateJour.getMonth()+1;
+		var Année = dateJour.getFullYear();
+		var JourN = dateNaissance.getDate()+1;
+		var MoisN =dateNaissance.getMonth()+1;
+		var AnnéeN =dateNaissance.getFullYear();
+		
+		if((document.form1.nom.value!="")&&(document.form1.prénome!="")&&(document.form1.sexe.value!="")&&(document.form1.anniversaire.value!="")&&(document.form1.adressemail.value!="")){
+		   if(Année-AnnéeN==18){
+			     if(((Jour-JourN)>= 0)&&((Mois-MoisN)>=0)){
+				    alert("Vous êtes majeur vous pouvez jouer");
+					window.open("page-1.html");
+		          }
+				 else{
+				   alert("!DESOLÉ...vous êtes mineur ");
+				  
+				 }
+		      } 
+		  if ((Année-AnnéeN)>18){
+		     alert("Vous êtes majeur vous pouvez jouer");   
+			 window.open("page-1.html");
+			}
+		  else{
+		    alert("!DESOLÉ...vous êtes mineur ");
+		  }
+		  
+		}
+        else{
+		  alert("SVP... remplir les champ vide");
+		}		
+		  
+		  
+	 
+	 }
+	 
+	</script>
+	<style type="text/css">
+body {
+	  
+	background: url("loto2.jpg");  
+	background-position: center;
+	background-size: cover;
+}
+
+.form-style-9{
+	max-width: 450px;
+	background: #FAFAFA;
+	padding: 30px;
+	margin: 50px auto;
+	box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+	border-radius: 10px;
+	border: 6px solid #305A72;
+}
+.form-style-9 ul{
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+.form-style-9 ul li{
+	display: block;
+	margin-bottom: 10px;
+	min-height: 35px;
+}
+.form-style-9 ul li  .field-style{
+	box-sizing: border-box; 
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box; 
+	padding: 8px;
+	outline: none;
+	border: 1px solid #B0CFE0;
+	-webkit-transition: all 0.30s ease-in-out;
+	-moz-transition: all 0.30s ease-in-out;
+	-ms-transition: all 0.30s ease-in-out;
+	-o-transition: all 0.30s ease-in-out;
+
+}.form-style-9 ul li  .field-style:focus{
+	box-shadow: 0 0 5px #B0CFE0;
+	border:1px solid #B0CFE0;
+}
+.form-style-9 ul li .field-split{
+	width: 49%;
+}
+.form-style-9 ul li .field-full{
+	width: 100%;
+}
+.form-style-9 ul li input.align-left{
+	float:left;
+}
+.form-style-9 ul li input.align-right{
+	float:right;
+}
+.form-style-9 ul li textarea{
+	width: 100%;
+	height: 100px;
+}
+.form-style-9 ul li input[type="button"], 
+.form-style-9 ul li input[type="submit"] {
+	-moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
+	box-shadow: inset 0px 1px 0px 0px #3985B1;
+	background-color: #216288;
+	border: 1px solid #17445E;
+	display: inline-block;
+	cursor: pointer;
+	color: #FFFFFF;
+	padding: 8px 18px;
+	text-decoration: none;
+	font: 12px Arial, Helvetica, sans-serif;
+}
+.form-style-9 ul li input[type="button"]:hover, 
+.form-style-9 ul li input[type="submit"]:hover {
+	background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
+	background-color: #28739E;
+}
+</style>
+  </head>
+  <body>
+    <form name="form1" class="form-style-9" >
+	<ul>
+      <li>
+	      <input type="text" name="nom" value="" class="field-style field-split align-left" placeholder="Nom" >
+          <input type="text" name="prénome" value="" class="field-style field-split align-right" placeholder="Prénom " >
+	  </li>
+	  <li>
+	      <input type="date" id="date" value="" name="anniversaire" class="field-style field-split align-left" placeholder="Date de Naissance" >
+	      <input type="email" name="adressemail" value="" class="field-style field-split align-right" placeholder="Adress Email ">
+	  </li>
+	  <li>
+		   SEXE :<br>
+		  <input type="radio" name="sexe">Masculin<br>
+		  <input type="radio" name="sexe">Fémina<br>
+	  </li>
+	  <li>
+	  <input type="button" name="btjouer" value="Jouer" onclick="Jouer()">
+	  </li>
+       </ul>	  
+	  </form>
+  </body>
+</html>

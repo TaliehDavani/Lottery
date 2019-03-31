@@ -1,0 +1,288 @@
+<!DOCTYPE html5>
+<html>
+  <head>
+    <meta  charset="UTF-8" >
+    <title>Projet 6-49</title>
+    <script type="text/javascript">
+	/*ce code pour le loto "jeux 6-49"contient des fonction
+	//qui cherch a trouves l'egalite entre les chiffre 
+	//propose par le joueur et celle de system et donnée
+    //les resultas en réspactant les conditions de jeux
+	//function Tirage 
+	*/
+	function TirageAléatoire(){
+		   var tabAléatoire=new Array();
+		   var nombreGangn = new Array();
+		   var CapitalE = document.form1.capital.value; 
+		   var numDechifGang=0;	
+		   
+                nombreGangn=TABlAleatoire();
+                triBulles(nombreGangn);				
+				tabAléatoire=TABlAleatoire();
+				triBulles(tabAléatoire);
+				for(i=0;i<6;i++){
+                    document.getElementById( [i+1]).value= nombreGangn[i];
+		                 form1.elements[i].value = tabAléatoire[i];
+		             }	
+				
+			    if (CapitalE>=100){
+			           for (i=0; i<6;i++){
+				            index= numéroExiste(nombreGangn,tabAléatoire[i]);
+				                if(index!=-1){
+					                 numDechifGang=numDechifGang+1;
+									document.getElementById( [index+1]).style.bgColor="red";
+									form1.elements[i].style.bgColor="red";
+									
+									 
+				                 }
+				          }
+					    switch(numDechifGang){
+									case(1):
+											alert("Les gains se rajoutent au capital et les pertes …. (Devinez!)");
+											CapitalE=CapitalE-10;
+										break;
+									case(2):
+											alert("Les gains se rajoutent au capital et les pertes …. (Devinez!)");
+											CapitalE=CapitalE-10;
+										break;
+									case(3):
+											alert("3 numéros sur 6 : gain de 10$");
+											CapitalE=CapitalE+10;
+										break
+									case (4):
+											alert("4 numéros sur 6 : gain de 85$");
+											CapitalE=CapitalE+85;
+										break;
+									case (5):
+											alert("5 numéros sur 6 : gain de 2450$");
+											CapitalE=CapitalE+85;
+										break;
+									case (6):
+											alert("6 numéros sur 6 : gain de 2050000$ et ce n’est pas une raison pour abandonner les études ");
+										break;
+									default:
+										alert("!DÉSOLÉ....ta tous perdus");	
+								  }	
+                    document.form1.capital.value=CapitalE;
+					
+			        for(i=0;i<6;i++){
+                    document.getElementById( [i+1]).value= nombreGangn[i];
+		                 form1.elements[i].value = tabAléatoire[i];
+		             }			  
+			      }
+			    else{
+					alert("votre capital si pas suffisant");
+					system.exit;
+			      }
+	 }
+	 
+	 
+	 
+	function Tirage(){
+	   var entreTirage = new Array();
+	   var nombreGangn = new Array();
+	   var CapitalE = document.form1.capital.value;
+       var numDechifGang=0;	   
+			for(i=0; i<6; i++){
+				entreTirage[i]=parseInt(form1.elements[i].value);	
+			  }
+			for (i=0; i<6; i++){
+				num=entreTirage[i];
+				entreIndices= indicesDesNumero(entreTirage,num);
+					if(entreIndices.length>1){
+						alert("le numéro" +num+ "est deja existe choisir un autre numéro");
+						system.exit;
+					  }
+					if ((entreTirage[i]<0)||(entreTirage[i]>49)){
+						alert("Le numéro doit etre entre 0 et 49 verifier votre chiffre");
+						system.exit;
+					  }
+					    
+    		  }
+			nombreGangn=TABlAleatoire();
+			triBulles(nombreGangn);
+			triBulles(entreTirage);
+			for(i=0;i<6;i++){
+			        form1.elements[i].value = entreTirage[i];
+                    document.getElementById( [i+1]).value= nombreGangn[i]
+		                 
+		             }	 
+			
+			
+			if (CapitalE>=100){
+				for (i=0; i<6;i++){
+					index= numéroExiste(nombreGangn,entreTirage[i]);
+						if(index!=-1){
+							numDechifGang=numDechifGang+1;
+							document.getElementById( [index+1]).style.backgroundColor="red";
+									form1.elements[i].style.backgroundColor="red";
+						  }
+			      }
+			    switch(numDechifGang){
+						case(1):
+								alert("Les gains se rajoutent au capital et les pertes …. (Devinez!)");
+								CapitalE=CapitalE-10;
+							break;
+						case(2):
+								alert("Les gains se rajoutent au capital et les pertes …. (Devinez!)");
+								CapitalE=CapitalE-10;
+							break;
+						case(3):
+								alert("3 numéros sur 6 : gain de 10$");
+								CapitalE=CapitalE+10;
+							break
+						case (4):
+								alert("4 numéros sur 6 : gain de 85$");
+								CapitalE=CapialE+85;
+							break;
+						case (5):
+								alert("5 numéros sur 6 : gain de 2450$");
+								CapitalE=CapitalE+85;
+							break;
+						case (6):
+								alert("6 numéros sur 6 : gain de 2050000$ et ce n’est pas une raison pour abandonner les études ");
+							break;
+						default:
+							alert("!DÉSOLÉ....ta tous perdus");	
+											
+			        
+			      }
+				document.form1.capital.value=CapitalE;
+			  }
+			else{
+		        alert("votre capital si pas suffisant");
+		        system.exit;
+		     }
+				
+		
+			
+	 }		     
+		
+    
+
+	function TABlAleatoire(){
+		    var tabAléatoire= new Array();
+			var num;
+			var entreIndices=new Array();
+		      
+		    for(i=0; i<6; i++){
+					tabAléatoire[i]=getTirage(49);
+				  }
+				for (i=0; i<6; i++){
+					num=tabAléatoire[i];
+				    entreIndices= indicesDesNumero(tabAléatoire,num);
+					  if(entreIndices.length>1){
+					      tabAléatoire[i]=getTirage(49);
+						 }
+			     }
+				
+		return tabAléatoire;
+	 }
+		       
+	/*function getTirage pour generes des nombre entre 0 et49 d'une maniére aléatoir
+    */	
+    function getTirage(N){
+	        return (Math.floor(N*Math.random()+1));
+       }
+	/*fonction numéroExiste pour fair la comparison de deux tableaux
+    */	
+	function numéroExiste(tab,numéro) {
+			   var indexc;
+			   indexc=tab.indexOf(numéro);
+			   return indexc;
+	 }
+	/*fonction indicesDesNumero pour trouvé le nombre d'ocurence d'un chiffre dans un tableaux 
+    */	
+	function indicesDesNumero(tab,numero){
+	    var indices=new Array();
+	    var index=tab.indexOf(numero);
+		   while (index!=-1){
+		      indices.push(index);
+			  index=tab.indexOf(numero,index+1);
+		   }
+		 return indices;
+	  }
+	function triBulles (tab){
+            var aucunEchangeFait;
+            var iDernier = tab.length - 1;
+            var temp;
+            
+            do {
+                aucunEchangeFait = true;
+                for (var i = 0; i < iDernier; i++){
+                    if (tab[i] > tab[i+1]){
+                        temp = tab[i];
+                        tab[i] = tab[i+1];
+                        tab[i+1] = temp;
+                        aucunEchangeFait = false;
+                    }
+                }
+                iDernier--;
+            }   while (aucunEchangeFait == false);
+        }
+
+	</script>
+  <style type="text/css">
+body{
+background: url("loto2.jpg");  
+	background-size: cover;
+  
+	}
+
+
+table, th, td {
+    border: 1px solid #17445E;
+}
+.table{float:right;}
+.center{
+ height:400px;
+    width:400px;
+    background-color:#27f305;
+    position:absolute;
+    margin:auto;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: lightblue;
+    border: 3px solid #17445E;
+    padding: 30px;
+}
+
+
+
+</style>
+  </head>
+  <body>
+  <div class="center">
+    <form name="form1">
+	   <table name="table1">
+			<td ><input type="text" value="" size="2" /></td>
+			<td><input type="text" value="" size="2" /></td>
+			<td ><input type="text" value="" size="2"  /></td>
+			<td ><input type="text" value="" size="2"  /></td>
+			<td ><input type="text" value="" size="2" /></td>
+			<td ><input type="text" value="" size="2" /></td>
+		</table>
+<p>Case à cocher<input type="checkbox" name="btaléatoire" value="" onclick="TirageAléatoire()"></p>		
+	<table name="table2">
+			<td ><input readonly type="text" value="" size="2" id="1" /></td>
+			<td ><input readonly type="text" value="" size="2" id="2"/></td>
+			<td ><input readonly type="text" value="" size="2"  id="3"/></td>
+			<td ><input readonly type="text" value="" size="2"  id="4"/></td>
+			<td ><input readonly type="text" value="" size="2" id="5"/></td>
+			<td ><input readonly type="text" value="" size="2" id="6"/></td>
+		</table>
+		<p><input type="button" name="bttirage" value="tirage" onclick="Tirage()"></p>
+     
+	   Entre votre capital: <input type="text" name="capital"  size="2" value=""/>
+	 
+    </form><br><br>
+	<table   align="center"> 
+	 <tr><td>3 numéros sur 6 :        gain de 10$</td></tr>
+	 <tr><td>4 numéros sur 6 :    gain de 85$</td></tr>
+	 <tr><td>5 numéros sur 6 :  gain de 2450$</td></tr>
+	 <tr><td>6 numéros sur 6 :  gain de 2050000$</td></tr>
+</table></div>
+  </body>
+</html>
